@@ -16,12 +16,12 @@
 	</p>
 	
 	<form action="${pageContext.request.contextPath}/phone/modify2" method="get" >
-	
-		이름(name) : <input type="text" name="name" value="${pvo.name}"><br>	<!-- requestScope.pvo.name 으로 해도됨. -->
-		핸드폰(hp) : <input type="text" name="hp" value="${pvo.hp}"><br>
-		회사(company) : <input type="text" name="company" value="${pvo.company}"><br>
+		이름(name) : <input type="text" name="name" value="${requestScope.pMap.NAME}"><br>	<!-- requestScope.pvo.name 으로 해도됨. -->
+													<!-- getName이 아니라 NAME이라는 key값을 꺼내오는 것임. -->
+		핸드폰(hp) : <input type="text" name="hp" value="${requestScope.pMap.HP}"><br>
+		회사(company) : <input type="text" name="company" value="${requestScope.pMap.COMPANY}"><br>
 		
-		코드(id) : <input type="hidden" name="personId" value="${pvo.personId}"><br>
+		코드(id) : <input type="hidden" name="personId" value="${requestScope.pMap.PERSONID}"><br>
 		<button type="submit">수정</button>
 		
 	</form>

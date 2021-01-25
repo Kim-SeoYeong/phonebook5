@@ -28,7 +28,7 @@
 	
 	<!-- select id="쿼리문이름" resultType="뭘로 받아줄건지" -->
 	<!-- 전체리스트가져오기 -->
-	<select id="selectList" resultType="com.javaex.vo.PersonVo">
+	<select id="selectList" resultType="PersonVo">
 		<!--CDATA 안에는 태그로 인식하지 말아라 라는 표현  -->
 		<!-- setPersonId(), setName() 이런 개념이기 때문에 만약 db컬럼명과 dao필드 명이 다르면
 			 as를 이용해서 필드명과 컬럼명을 맞춰주면 된다. -->
@@ -78,6 +78,20 @@
 		]]>
 	</select>
 	
+	<!-- 사람 한명 불러오기2 -->
+	<!-- map 방식 -->
+	<select id="selectOne2" parameterType="int" resultType="map">
+		<![CDATA[
+			select  person_id as personId,
+			        name,
+			        hp,
+			        company
+			from person
+			where person_id = #{personId}
+			order by person_id desc
+		]]>
+	</select>
+	
 	<!-- 전화번호 수정 -->
 	<update id="update" parameterType="com.javaex.vo.PersonVo">
 		<![CDATA[
@@ -89,5 +103,22 @@
 		]]>
 	</update>
 
+	<!-- 수정2 -->
+	<!-- map의 key값들을 넣어줘야함. -->
+	<!-- 
+		personMap.put("id", personId);
+		personMap.put("name", name);
+		personMap.put("hp", hp);
+		personMap.put("company", company);
+	 -->
+	<update id="update2" parameterType="map">
+		<![CDATA[
+			update person
+			set name = #{name},
+			    hp = #{hp},
+			    company = #{company}
+			where person_id = #{id}
+		]]>
+	</update>
 	
 </mapper>

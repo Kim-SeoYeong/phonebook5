@@ -28,7 +28,8 @@
 			</tr>
 			<tr>
 				<!-- <td><a href="/phonebook4/phone/modifyForm?id=${personVo.personId}">수정</a></td> -->
-				<td><a href="${pageContext.request.contextPath}/phone/modifyForm?id=${personVo.personId}">수정</a></td>
+				<!-- <td><a href="${pageContext.request.contextPath}/phone/modifyForm?id=${personVo.personId}">수정</a></td>  -->
+				<td><a href="${pageContext.request.contextPath}/phone/modifyForm2?id=${personVo.personId}">수정</a></td>
 				<td><a href="${pageContext.request.contextPath}/phone/delete?personId=${personVo.personId}">[삭제]</a>
 					<!-- Pathvariable형식으로 하려면 -->
 					<a href="${pageContext.request.contextPath}/phone/delete2/${personVo.personId}">[삭제2]</a>

@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,6 +100,20 @@ public class PhoneController {
 		return "modifyForm";	//포워드
 	}
 	
+	//수정폼2 Map을 이용한 방식
+	@RequestMapping(value="/modifyForm2", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(@RequestParam("id") int personId, Model model) {
+		System.out.println("modifyForm2");
+		System.out.println(personId);
+		
+		Map<String, Object> personMap = phoneDao.getPerson2(personId);
+		
+		//personMap을 보내기 위해
+		model.addAttribute("pMap", personMap);
+		
+		return "modifyForm2";
+	}
+	
 	//수정	--> modify	--> @ModelAttribute를 이용한것.
 	//modify--> @RequestParam을 사용했을 경우
 	@RequestMapping(value="/modify", method = {RequestMethod.GET, RequestMethod.POST})
@@ -114,6 +129,21 @@ public class PhoneController {
 		phoneDao.personUpdate(personVo);
 		
 		return "redirect:/phone/list";	//redirect 해줌.
+	}
+	
+	//수정2 --> modify2
+	@RequestMapping(value="/modify2", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify2(@RequestParam("personId") int personId,
+						  @RequestParam("name") String name,
+						  @RequestParam("hp") String hp,
+						  @RequestParam("company") String company) {
+		System.out.println("modify2");
+		System.out.println(personId + "," + name + "," + hp + "," + company);
+		
+		//phoneDao --> personUpdate2()
+		phoneDao.personUpdate2(personId, name, hp, company);
+		
+		return "redirect:/phone/list";
 	}
 	/*
 	//수정	--> modify2
